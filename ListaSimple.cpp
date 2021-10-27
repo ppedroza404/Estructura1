@@ -17,7 +17,9 @@ int main()
     do {
 
         // Texto del menú que se verá cada vez
-        cout << "\n\nMenu de Opciones" << endl;
+        cout << "\n\n************************" << endl;
+        cout << "**  Menu de Opciones  **" << endl;
+        cout << "************************" << endl;
         cout << "1. Agregar Nodo al inicio de la lista" << endl;
         cout << "2. Agregar Nodo al final de la lista" << endl;
         cout << "3. Agregar Nodo despues de (nuevo nodo,despues de nodo)" << endl;
@@ -66,8 +68,9 @@ int main()
         case 5:
             // Regresa la posicion del dato buscado
             cout << "\nIngrese un dato: ";
-            cin >> nodo;
-            cout << "El Dato esta en la posicion : " << LS->datoPos(nodo);
+            cin >> nodo;            
+            cout << "El Dato "<< nodo << " esta en la posicion : " << LS->datoPos(nodo)<< endl;
+            LS->desplegar();
             break;
         case 6:
             // Mustra el Primer Dato de la lista
