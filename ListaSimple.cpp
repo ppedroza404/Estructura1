@@ -22,12 +22,20 @@ int main()
         cout << "************************" << endl;
         cout << "1. Agregar Nodo al inicio de la lista" << endl;
         cout << "2. Agregar Nodo al final de la lista" << endl;
-        cout << "3. Agregar Nodo despues de (nuevo nodo,despues de nodo)" << endl;
-        cout << "4. Agregar Nodo antes de (nuevo nodo,despues de nodo)" << endl;
-        cout << "5. Buscar posicion de dato" << endl;
-        cout << "6. Mostrar El primer Dato" << endl;
-        cout << "7. Mostrar El ultimo Dato" << endl;
-        cout << "9. Mostrar Lista" << endl;
+        cout << "3. Agregar Nodo despues de (nuevo nodo,despues de)" << endl;
+        cout << "4. Agregar Nodo antes de (nuevo nodo,antes de)" << endl;
+        cout << "5. Agregar dato Asendientemente" << endl;
+        cout << "6. Buscar posicion de dato" << endl;
+        cout << "7. Mostrar El primer Dato" << endl;
+        cout << "8. Mostrar El ultimo Dato" << endl;
+        cout << "9. Intercambiar Primero con ultimo" << endl;
+        cout << "10. Agregar Nodo en posicion (_dato,_pos)" << endl;
+        cout << "11. Eliminar Nodo en posicion (_pos)" << endl;
+        cout << "12. Eliminar todas las apariciones de " << endl;
+        cout << "13. Eliminar valores repetidos consecutivos " << endl;
+        cout << "14. Eliminar valores repetidos no consecutivos " << endl;
+        cout << "15. Crear copia de lista inversa " << endl;
+        cout << "19. Mostrar Lista" << endl;
         cout << "20. borrar Lista" << endl;
         cout << "0. SALIR" << endl;
 
@@ -66,21 +74,45 @@ int main()
             LS->agregarAntesDe(nodo, nodo2);
             break;
         case 5:
+            // Implementar
+            break;
+        case 6:
             // Regresa la posicion del dato buscado
             cout << "\nIngrese un dato: ";
             cin >> nodo;            
             cout << "El Dato "<< nodo << " esta en la posicion : " << LS->datoPos(nodo)<< endl;
             LS->desplegar();
             break;
-        case 6:
+        case 7:
             // Mustra el Primer Dato de la lista
             cout << "El primer dato de la lista es : " << LS->primero();
             break;
-        case 7:
+        case 8:
             // Mustra el Ultimo Dato de la lista
             cout << "El Dato esta en la posicion : " << LS->ultimo();
             break;
         case 9:
+            // Implementar
+            break;
+        case 10:
+            // Implementar
+            break;
+        case 11:
+            // Implementar
+            break;
+        case 12:
+            // Implementar
+            break;
+        case 13:
+            // Implementar
+            break;
+        case 14:
+            // Implementar
+            break;
+        case 15:
+            // Implementar
+            break;
+        case 19:
             // Despliega la lista                
 
             if (LS->esVacia()) {
