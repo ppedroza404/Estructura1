@@ -367,22 +367,27 @@ bool lista_simple::agregarAscendente(int _dato)
 }
 
 void lista_simple::eliminarTodasLasApariciones(int _dato) {
-
-	NodoS* aux = getCab();
-	/// <summary>
-	/// No esta funcionando
-	/// </summary>
-	/// <param name="_dato"></param>
 	if (!esVacia()) {
-		while (aux != NULL ) {
-			borrar(_dato);
-			if (aux->getSgte() != NULL) {
-				aux = aux->getSgte();
-			}
-			else {
-				aux = NULL;
-			}
-			
+		NodoS* aux_borrar;
+		NodoS* aux = getCab();
+		NodoS* ant = NULL;
+		aux_borrar = aux;
+
+		while ((aux_borrar != NULL) && (aux_borrar->getDato() != _dato)) {
+			ant = aux_borrar;
+			aux_borrar = aux_borrar->getSgte();
 		}
+
+		if (aux_borrar == NULL) { //Recorrio toda la lista y aux_borrar es NULL
+			cout << "El elemento no existe";
+		}
+		else if (aux->getDato() == _dato) { //Se encuenta en el primer Nodo de la lista
+			cab=NULL;
+		}
+		else {
+			ant->setSgte(aux_borrar->getSgte());
+			delete aux_borrar;
+		}
+
 	}
 }

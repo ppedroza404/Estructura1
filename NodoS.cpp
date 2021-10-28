@@ -15,6 +15,7 @@ NodoS::NodoS(int _dato)
 
 int NodoS::getDato()
 {
+
 	return this->dato;
 }
 

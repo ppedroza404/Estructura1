@@ -31,7 +31,7 @@ int main()
         cout << "9. Intercambiar Primero con ultimo" << endl;
         cout << "10. Agregar Nodo en posicion (_dato,_pos)" << endl;
         cout << "11. Eliminar Nodo en posicion (_pos)" << endl;
-        cout << "12. Eliminar todas las apariciones de " << endl;
+        cout << "12. Eliminar todas las apariciones de (Numero) " << endl;
         cout << "13. Eliminar valores repetidos consecutivos " << endl;
         cout << "14. Eliminar valores repetidos no consecutivos " << endl;
         cout << "15. Crear copia de lista inversa " << endl;
