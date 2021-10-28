@@ -56,7 +56,6 @@ public:
 	//Operaciones de borrar
 	bool borrar(int); // Eliminar el nodo cuyo dato sea un entero de entrada
 	void borrarLista(); // Eliminar toda La lista
-	bool borrarPos(); // Elimina el nodo que se ubuca en la posicion de referencia
 
 	void desplegar();
 

@@ -113,26 +113,6 @@ bool lista_simple::existe(int dato)
 	return dirDato(dato) != NULL;
 }
 
-int lista_simple::datoPos(int x)
-{
-	NodoS* aux = getCab();
-	int pos = 0;
-	bool encontrado = false;
-	while ( aux != NULL && encontrado != true) {
-		pos = pos + 1;
-		if (aux->getDato() == x) {
-			encontrado = true;
-		}
-		else {
-			aux = aux->getSgte();
-			if (aux == NULL) {
-				pos = 0;
-			}
-		}
-	}
-	return pos;
-}
-
 void lista_simple::desplegar()
 {
 	NodoS* aux = getCab();
@@ -268,7 +248,75 @@ void lista_simple::borrarLista()
 	}
 }
 
-bool lista_simple::borrarPos()
+bool lista_simple::agregarPos(int dato, int pos)
 {
-	return false;
+	bool agregado = false;
+	if (!esVacia()) {
+		NodoS* ant = getCab();
+		int contador = 1;
+		while (ant->getSgte() != NULL && !agregado) {
+			if (contador + 1 == pos) {
+				NodoS* nuevo = new NodoS(dato);
+				nuevo->setSgte(ant->getSgte());
+				ant->setSgte(nuevo);
+				largo++;
+				agregado = true;
+			}
+			else {
+				ant = ant->getSgte();
+				contador++;
+			}
+		}
+	}
+	return agregado;
+}
+
+int lista_simple::datoPos(int dato)
+{
+	NodoS* aux = getCab();
+	int contador = 1;
+	if (!esVacia()) {
+		while (aux != NULL) {
+			if (aux->getDato() == dato) {
+
+				return contador;
+			}
+			else {
+				aux = aux->getSgte();
+				contador++;
+			}
+		}
+		contador = 0;
+	}
+	else {
+		contador = 0;
+	}
+	return contador;
+}
+
+bool lista_simple::borrarPos(int pos)
+{
+	bool eliminado = false;
+	NodoS* aux = NULL;
+	NodoS* ant = getCab();
+	int contador = 1;
+
+	if (!esVacia()) {
+		while (aux == NULL && !eliminado) {
+			if (contador + 1 == pos) {
+				aux = ant->getSgte(); //Señalar el nodo a eliminar
+				ant->setSgte(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
+			}
+			else {
+				ant = ant->getSgte();
+				contador++;
+			}
+		}
+		if (aux != NULL) {
+			delete aux;
+			setLargo(getLargo() - 1);
+			eliminado = true;
+		}
+	}
+	return eliminado;
 }
