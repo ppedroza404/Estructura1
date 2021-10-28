@@ -121,7 +121,7 @@ void lista_simple::desplegar()
 		cout << aux->getDato() << "->";
 		aux = aux->getSgte();
 	}
-	cout << "Final \n\n\n";
+	cout << "Final \n\n";
 
 }
 
@@ -144,6 +144,7 @@ void lista_simple::agregarFinal(int x)
 	}
 
 	if (primero->getSgte() == NULL) {
+		setLargo(getLargo() + 1);
 		primero->setSgte(nuevo);
 	}
 }
@@ -274,24 +275,21 @@ bool lista_simple::agregarPos(int dato, int pos)
 int lista_simple::datoPos(int dato)
 {
 	NodoS* aux = getCab();
-	int contador = 1;
-	if (!esVacia()) {
-		while (aux != NULL) {
-			if (aux->getDato() == dato) {
-
-				return contador;
-			}
-			else {
-				aux = aux->getSgte();
-				contador++;
+	int pos = -1;
+	bool encontrado = false;
+	while (aux != NULL && encontrado != true) {
+		pos = pos + 1;
+		if (aux->getDato() == dato) {
+			encontrado = true;
+		}
+		else {
+			aux = aux->getSgte();
+			if (aux == NULL) {
+				pos = 0;
 			}
 		}
-		contador = 0;
 	}
-	else {
-		contador = 0;
-	}
-	return contador;
+	return pos;
 }
 
 bool lista_simple::borrarPos(int pos)
@@ -319,4 +317,69 @@ bool lista_simple::borrarPos(int pos)
 		}
 	}
 	return eliminado;
+}
+
+bool lista_simple::intercambiar() 
+{
+	bool sucess = false;
+	NodoS* aux = new NodoS();
+	NodoS* prim = getCab();
+	NodoS* ult = dirUltimo();
+	if (prim != NULL && prim != ult && largo > 1) {
+		aux ->setDato(prim->getDato());
+		prim->setDato(ult->getDato());
+		ult->setDato(aux->getDato());
+		sucess = true;
+	}
+
+	return sucess;
+};
+
+bool lista_simple::agregarAscendente(int _dato)
+{
+	bool sucess = false;
+	bool repetido = false;
+	if (esVacia()) {
+		agregarInicio(_dato);
+		sucess = true;
+	}
+	else {
+		NodoS* aux = getCab();
+
+		while (aux != NULL && !sucess && !repetido) {
+			if (aux->getDato() == _dato) {
+				repetido = true;
+			}
+			else if (aux->getDato() > _dato) {
+				//agregar Antes de
+				agregarAntesDe(_dato, aux->getDato());
+				sucess = true;
+			}
+			else if (ultimo() < _dato) {
+				agregarFinal(_dato);
+				sucess = true;
+			}
+
+			aux = aux->getSgte();
+		}
+	}
+	return sucess;
+}
+
+void lista_simple::eliminarTodasLasApariciones(int _dato) {
+
+	NodoS* aux = getCab();
+
+	if (!esVacia()) {
+		while (aux != NULL ) {
+			borrar(_dato);
+			if (aux->getSgte() != NULL) {
+				aux = aux->getSgte();
+			}
+			else {
+				aux = NULL;
+			}
+			
+		}
+	}
 }

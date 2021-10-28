@@ -74,7 +74,19 @@ int main()
             LS->agregarAntesDe(nodo, nodo2);
             break;
         case 5:
-            // Implementar
+            // Agrega acendentemente un dato
+            cout << "\nIngrese el dato que quiere agregar: ";
+            cin >> nodo;
+
+            if (LS->agregarAscendente(nodo)) {
+                cout << "Se agrego el numero asendentemente \n";
+                LS->desplegar();
+
+            }
+            else {
+                cout << "No se agrego el numero \n";
+            }
+
             break;
         case 6:
             // Regresa la posicion del dato buscado
@@ -89,19 +101,46 @@ int main()
             break;
         case 8:
             // Mustra el Ultimo Dato de la lista
-            cout << "El Dato esta en la posicion : " << LS->ultimo();
+            cout << "El ultimo dato en la lista es : " << LS->ultimo();
             break;
         case 9:
-            // Implementar
+            LS->desplegar();
+            cout << endl;
+            if (LS->intercambiar()) {
+                cout << "Se intercambio el primero con el el ultimo: \n";
+                LS->desplegar();
+                
+            }
+            else {
+                cout << "No se pudo intercambiar el primero y el ultimo: \n";
+            }            
+            
             break;
         case 10:
-            // Implementar
+            cout << "\nIngrese nuevo nodo: ";
+            cin >> nodo;
+            cout << "\nPosicion  : ";
+            cin >> nodo2;
+
+            LS->agregarPos(nodo,nodo2);
             break;
         case 11:
-            // Implementar
+            cout << "\nIngrese la posicion que desea borrar: ";
+            cin >> nodo;
+
+            if (LS->borrarPos(nodo)) {
+                cout << "El nodo fue borrado \n";
+                LS->desplegar();
+
+            }
+            else {
+                cout << "No se borro el nodo \n";
+            }
             break;
         case 12:
-            // Implementar
+            cout << "\nIngrese el valor que desea borrar: ";
+            cin >> nodo;
+            LS->eliminarTodasLasApariciones(nodo);
             break;
         case 13:
             // Implementar
@@ -113,7 +152,7 @@ int main()
             // Implementar
             break;
         case 19:
-            // Despliega la lista                
+            // Despliega la lista               
 
             if (LS->esVacia()) {
                 cout << "La lista esta vacia" << endl;

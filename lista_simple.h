@@ -38,7 +38,7 @@ public:
 	bool agregarDespuesDe(int, int);  // Agrega al dato despues del nodo con la pocision de referencia
 
 	// Inicio Tarea
-	bool agregarAscendente(int dato); // Agrega de forma ascendente el dato en la lista, Si el Dato ya existe retorna Falso y no lo agrega. 
+	bool agregarAscendente(int); // Agrega de forma ascendente el dato en la lista, Si el Dato ya existe retorna Falso y no lo agrega. 
 	void eliminarValoresRepetidosConsecutivos(); //Considere una lista con valores repetidos, pero todos consecutivos
 	void eliminarValoresRepetidosNoConsecutivos(); // Depura la lista para eliminar las repeticiones.
 	void copiarInversa(lista_simple _lsOri, lista_simple _lsDst);// de la clase de dos listas
