@@ -369,7 +369,10 @@ bool lista_simple::agregarAscendente(int _dato)
 void lista_simple::eliminarTodasLasApariciones(int _dato) {
 
 	NodoS* aux = getCab();
-
+	/// <summary>
+	/// No esta funcionando
+	/// </summary>
+	/// <param name="_dato"></param>
 	if (!esVacia()) {
 		while (aux != NULL ) {
 			borrar(_dato);
