@@ -390,4 +390,37 @@ void lista_simple::eliminarTodasLasApariciones(int _dato) {
 		}
 
 	}
+
+}
+
+void lista_simple::eliminarValoresRepetidosConsecutivos() {
+
+	NodoS* aux = getCab();
+	NodoS* auxSig = aux->getSgte();
+
+	while (aux != NULL) {
+		if (aux->getDato() == aux->getSgte()->getDato()) {
+			delete aux;
+			setLargo(getLargo() - 1);
+			aux = auxSig;
+			auxSig = aux->getSgte();
+		}
+		aux = aux->getSgte();
+	}
+
+}
+void lista_simple::eliminarValoresRepetidosNoConsecutivos() {
+}
+
+void lista_simple::copiarInversa() {
+
+	lista_simple* LSInvertida = new lista_simple();
+
+	NodoS* aux = dirUltimo();
+	while (aux != NULL)
+	{
+		agregarInicio(aux->getDato());
+		aux = dirAnteriorDato(aux);
+	}
+	LSInvertida->desplegar();
 }

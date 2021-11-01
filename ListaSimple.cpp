@@ -143,13 +143,17 @@ int main()
             LS->eliminarTodasLasApariciones(nodo);
             break;
         case 13:
-            // Implementar
+            cout << "\nEliminando valores consecutivos: ";
+            LS->eliminarValoresRepetidosConsecutivos();
+            cout << "\nNueva Lista: ";
+            LS->desplegar();
             break;
         case 14:
             // Implementar
             break;
         case 15:
-            // Implementar
+            cout << "\nLa Lista inversa es: ";
+            LS->copiarInversa();
             break;
         case 19:
             // Despliega la lista               
