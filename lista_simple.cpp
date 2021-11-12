@@ -304,6 +304,9 @@ bool lista_simple::borrarPos(int pos)
 			if (contador + 1 == pos) {
 				aux = ant->getSgte(); //Señalar el nodo a eliminar
 				ant->setSgte(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
+			}else if (contador == 1 && contador == pos) {
+				aux = getCab();  //señalar el nodo a eliminar
+				setCab(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
 			}
 			else {
 				ant = ant->getSgte();
@@ -390,37 +393,28 @@ void lista_simple::eliminarTodasLasApariciones(int _dato) {
 		}
 
 	}
-
 }
 
-void lista_simple::eliminarValoresRepetidosConsecutivos() {
-
-	NodoS* aux = getCab();
-	NodoS* auxSig = aux->getSgte();
-
-	while (aux != NULL) {
-		if (aux->getDato() == aux->getSgte()->getDato()) {
-			delete aux;
-			setLargo(getLargo() - 1);
-			aux = auxSig;
-			auxSig = aux->getSgte();
+void lista_simple::eliminarValoresRepetidosNoConsecutivos()
+{
+	if (!esVacia()) {
+		NodoS* aux = NULL;
+		NodoS* ant = getCab();
+		while (ant != NULL) {
+			if (aux) {
+				if (aux->getDato() == ant->getDato()) {
+					aux = ant->getSgte(); //Señalar el nodo a eliminar
+					ant->setSgte(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
+					delete aux;
+				}
+				else {
+					ant = ant->getSgte();
+					aux = ant->getSgte();
+				}
+			}
+			else {
+				aux = ant->getSgte();
+			}
 		}
-		aux = aux->getSgte();
 	}
-
-}
-void lista_simple::eliminarValoresRepetidosNoConsecutivos() {
-}
-
-void lista_simple::copiarInversa() {
-
-	lista_simple* LSInvertida = new lista_simple();
-
-	NodoS* aux = dirUltimo();
-	while (aux != NULL)
-	{
-		agregarInicio(aux->getDato());
-		aux = dirAnteriorDato(aux);
-	}
-	LSInvertida->desplegar();
 }

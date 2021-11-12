@@ -9,7 +9,7 @@ class NodoD
 private:
 	int dato;
 	NodoD* sgte;
-	NodoD* ante;
+	NodoD* anterior;
 
 public:
 	NodoD();
@@ -21,5 +21,6 @@ public:
 
 	void setDato(int dato);
 	void setSgte(NodoD* sgte);
-	void setAnterior(NodoD* ante);
+	void setAnterior(NodoD* anterior);
 };
+

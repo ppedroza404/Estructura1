@@ -2,14 +2,14 @@
 #include "NodoD.h"
 #include "lista_simple.h"
 
-class lista_doble_lineal
+class lista_doble_circular
 {
 private:
 	NodoD* cab; // puntero cabeza de la lista Apunta al primer nodo de la lista
 	int largo; // Cantidad de nodoso que tiene la lista, el largo de la lista
 public:
-	lista_doble_lineal(); //constructor del tad
-	~lista_doble_lineal(); // destructor del tad
+	lista_doble_circular(); //constructor del tad
+	~lista_doble_circular(); // destructor del tad
 
 	NodoD* getCab();
 	int getLargo();
@@ -54,3 +54,4 @@ public:
 
 	void ordenarAscendente();
 };
+

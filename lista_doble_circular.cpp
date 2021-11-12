@@ -1,33 +1,93 @@
-#include "lista_doble_lineal.h"
+#include "lista_doble_circular.h"
 #include "NodoD.h"
 
-lista_doble_lineal::lista_doble_lineal()
+lista_doble_circular::lista_doble_circular()
 {
 	this->cab = NULL;
 	this->largo = 0;
 }
 
-NodoD* lista_doble_lineal::getCab()
+NodoD* lista_doble_circular::getCab()
 {
 	return this->cab;
 }
 
-int lista_doble_lineal::getLargo()
+int lista_doble_circular::getLargo()
 {
 	return this->largo;
 }
 
-void lista_doble_lineal::setCab(NodoD* ptr)
+void lista_doble_circular::setCab(NodoD* ptr)
 {
 	this->cab = ptr;
 }
 
-void lista_doble_lineal::setLargo(int n)
+void lista_doble_circular::setLargo(int n)
 {
 	this->largo = n;
 }
 
-int lista_doble_lineal::primero()
+NodoD* lista_doble_circular::dirDato(int dato)
+{
+	NodoD* dir = NULL;
+	NodoD* aux = getCab();
+
+	while (aux != NULL && dir == NULL) {
+		if (aux->getDato() == dato) {
+			dir = aux;
+		}
+		else {
+			aux = aux->getSgte();
+		}
+	}
+	return dir;
+}
+
+NodoD* lista_doble_circular::dirUltimo()
+{// necesita cambios
+	NodoD* dir = NULL;
+	NodoD* aux = getCab();
+
+	while (aux->getSgte() != NULL) {
+		aux = aux->getSgte();
+	}
+	dir = aux;
+	return dir;
+}
+
+NodoD* lista_doble_circular::dirAnteriorDato(int dato)
+{
+	NodoD* dir = NULL;
+	NodoD* aux = getCab();
+
+	while (aux != NULL && dir == NULL) {
+		if (aux->getDato() == dato) {
+			dir = aux->getAnterior();
+		}
+		else {
+			aux = aux->getSgte();
+		}
+	}
+	return dir;
+}
+
+NodoD* lista_doble_circular::dirAnteriorDato(NodoD* nodo)
+{
+	NodoD* dir = NULL;
+	NodoD* aux = getCab();
+
+	while (aux != NULL && dir == NULL) {
+		if (aux->getDato() == nodo->getDato()) {
+			dir = aux->getAnterior();
+		}
+		else {
+			aux = aux->getSgte();
+		}
+	}
+	return dir;
+}
+
+int lista_doble_circular::primero()
 {
 	int dato = 0;
 	if (!esVacia()) {
@@ -36,8 +96,8 @@ int lista_doble_lineal::primero()
 	return dato;
 }
 
-int lista_doble_lineal::ultimo()
-{
+int lista_doble_circular::ultimo()
+{ // necesita cambios
 	int dato = 0;
 	if (!esVacia()) {
 		NodoD* aux = getCab();
@@ -49,12 +109,12 @@ int lista_doble_lineal::ultimo()
 	return dato;
 }
 
-bool lista_doble_lineal::esVacia()
+bool lista_doble_circular::esVacia()
 {
 	return this->cab == NULL;
 }
 
-bool lista_doble_lineal::existe(int dato)
+bool lista_doble_circular::existe(int dato)
 {
 	bool existe = false;
 	if (!esVacia()) {
@@ -71,7 +131,7 @@ bool lista_doble_lineal::existe(int dato)
 	return existe;
 }
 
-int lista_doble_lineal::datoPos(int dato)
+int lista_doble_circular::datoPos(int dato)
 {
 	NodoD* aux = getCab();
 	int pos = 0;
@@ -91,30 +151,34 @@ int lista_doble_lineal::datoPos(int dato)
 	return pos;
 }
 
-void lista_doble_lineal::desplegar()
-{
+void lista_doble_circular::desplegar()
+{// necesita cambios
 	NodoD* aux = getCab();
+	NodoD* sgte = aux->getAnterior();
 	std::cout << "ELEMENTOS EN LA LISTA:" << std::endl;
-	while (aux != NULL) {
+	while (aux != sgte) {
 		cout << aux->getDato() << "->";
 		aux = aux->getSgte();
 	}
 	cout << "Final \n\n\n";
-
 }
-void lista_doble_lineal::agregarInicio(int dato)
+
+void lista_doble_circular::agregarInicio(int dato)
 {
 	NodoD* nuevo = new NodoD(dato); //Paso 1. Crear el nodo
 	nuevo->setSgte(getCab()); //Paso 2. Enlazar el nuevo nodo a la lista
 	//Paso 3 Reacomodar la lista con el nuevo nodo
 	if (!esVacia()) {
+		NodoD* sgte = nuevo->getSgte();
 		getCab()->setAnterior(nuevo);
+		nuevo->setAnterior(nuevo->getSgte());
+		sgte->setSgte(nuevo);
 	}
 	setCab(nuevo);
 	setLargo(getLargo() + 1);
 }
 
-void lista_doble_lineal::agregarFinal(int dato)
+void lista_doble_circular::agregarFinal(int dato)
 {
 	NodoD* nuevo = new NodoD(dato);
 	NodoD* aux = getCab();
@@ -127,70 +191,9 @@ void lista_doble_lineal::agregarFinal(int dato)
 		nuevo->setAnterior(aux);
 		setLargo(getLargo() + 1);
 	}
-
 }
 
-NodoD* lista_doble_lineal::dirDato(int dato)
-{// Devolver la direccion en la que se ubica el dato, sino existe en la lista devulve NULL	
-	NodoD* dir = NULL;
-	NodoD* aux = getCab();
-
-	while (aux != NULL && dir == NULL) {
-		if (aux->getDato() == dato) {
-			dir = aux;
-		}
-		else {
-			aux = aux->getSgte();
-		}
-	}
-	return dir;
-}
-
-NodoD* lista_doble_lineal::dirUltimo()
-{
-	NodoD* dir = NULL;
-	NodoD* aux = getCab();
-
-	while (aux->getSgte() != NULL) {
-		aux = aux->getSgte();
-	}
-	dir = aux;
-	return dir;
-}
-
-NodoD* lista_doble_lineal::dirAnteriorDato(int dato)
-{
-	NodoD* dir = NULL;
-	NodoD* aux = getCab();
-
-	while (aux != NULL && dir == NULL) {
-		if (aux->getDato() == dato) {
-			dir = aux->getAnterior();
-		}
-		else {
-			aux = aux->getSgte();
-		}
-	}
-	return dir;
-}
-
-NodoD* lista_doble_lineal::dirAnteriorDato(NodoD* nodo)
-{
-	NodoD* dir = NULL;
-	NodoD* aux = getCab();
-
-	while (aux != NULL && dir == NULL) {
-		if (aux->getDato() == nodo->getDato()) {
-			dir = aux->getAnterior();
-		}
-		else {
-			aux = aux->getSgte();
-		}
-	}
-	return dir;
-}
-
-bool lista_doble_lineal::agregarAntesDe(int _datoRef, int _dato)
+bool lista_doble_circular::agregarAntesDe(int _datoRef, int _dato)
 {
 	bool agregado = false;
 
@@ -218,8 +221,8 @@ bool lista_doble_lineal::agregarAntesDe(int _datoRef, int _dato)
 	return agregado;
 }
 
-bool lista_doble_lineal::agregarDespuesDe(int _datoRef, int _dato)
-{
+bool lista_doble_circular::agregarDespuesDe(int _datoRef, int _dato)
+{//Puede necesitar cambios
 	bool agregado = false;
 
 	if (getCab()->getDato() == _dato) {
@@ -247,7 +250,7 @@ bool lista_doble_lineal::agregarDespuesDe(int _datoRef, int _dato)
 	return agregado;
 }
 
-bool lista_doble_lineal::borrar(int _dato)
+bool lista_doble_circular::borrar(int _dato)
 {
 	bool eliminado = false;
 	NodoD* aux = dirDato(_dato); //Paso 1. Señalo el nodo a eliminar
@@ -269,11 +272,10 @@ bool lista_doble_lineal::borrar(int _dato)
 		eliminado = true;
 	}
 	return eliminado;
-
 }
 
-bool lista_doble_lineal::borrarLista()
-{
+bool lista_doble_circular::borrarLista()
+{ // puede necesitar cambios
 	bool eliminado = true;
 	if (!esVacia()) {
 		NodoD* aux = getCab();
@@ -288,8 +290,8 @@ bool lista_doble_lineal::borrarLista()
 	return eliminado;
 }
 
-bool lista_doble_lineal::borrarPos(int pos)
-{
+bool lista_doble_circular::borrarPos(int pos)
+{//puede necesitar cambios
 	bool eliminado = false;
 	NodoD* aux = NULL;
 	NodoD* ant = getCab();
