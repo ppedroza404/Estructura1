@@ -140,11 +140,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ListaSimple.cpp" />
+    <ClCompile Include="lista_doble_circular.cpp" />
+    <ClCompile Include="lista_doble_lineal.cpp" />
     <ClCompile Include="lista_simple.cpp" />
+    <ClCompile Include="NodoD.cpp" />
     <ClCompile Include="NodoS.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="lista_doble_circular.h" />
+    <ClInclude Include="lista_doble_lineal.h" />
     <ClInclude Include="lista_simple.h" />
+    <ClInclude Include="NodoD.h" />
     <ClInclude Include="NodoS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -24,12 +24,30 @@
     <ClCompile Include="lista_simple.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lista_doble_lineal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NodoD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lista_doble_circular.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NodoS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lista_simple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lista_doble_lineal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NodoD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lista_doble_circular.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
