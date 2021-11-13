@@ -418,3 +418,14 @@ void lista_simple::eliminarValoresRepetidosNoConsecutivos()
 		}
 	}
 }
+
+void lista_simple::eliminarValoresRepetidosConsecutivos()
+{
+
+}
+
+void lista_simple::copiarInversa()
+{
+
+	
+}

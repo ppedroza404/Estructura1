@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "lista_simple.h"
+#include "lista_doble_lineal.h"
 using namespace std;
 
 int main()
@@ -13,170 +14,515 @@ int main()
     int nodo2;
     bool repetir = true;
     lista_simple* LS = new lista_simple(); // Instancia de lista simple, LS tiene el puntero a la estructura
+    lista_doble_lineal* LDL = new lista_doble_lineal(); // Instancia de lista simple, LS tiene el puntero a la estructura
 
     do {
-
-        // Texto del menú que se verá cada vez
+        
         cout << "\n\n************************" << endl;
-        cout << "**  Menu de Opciones  **" << endl;
+        cout << "**  Menu de Principal**" << endl;
         cout << "************************" << endl;
-        cout << "1. Agregar Nodo al inicio de la lista" << endl;
-        cout << "2. Agregar Nodo al final de la lista" << endl;
-        cout << "3. Agregar Nodo despues de (nuevo nodo,despues de)" << endl;
-        cout << "4. Agregar Nodo antes de (nuevo nodo,antes de)" << endl;
-        cout << "5. Agregar dato Asendientemente" << endl;
-        cout << "6. Buscar posicion de dato" << endl;
-        cout << "7. Mostrar El primer Dato" << endl;
-        cout << "8. Mostrar El ultimo Dato" << endl;
-        cout << "9. Intercambiar Primero con ultimo" << endl;
-        cout << "10. Agregar Nodo en posicion (_dato,_pos)" << endl;
-        cout << "11. Eliminar Nodo en posicion (_pos)" << endl;
-        cout << "12. Eliminar todas las apariciones de (Numero) " << endl;
-        cout << "13. Eliminar valores repetidos consecutivos " << endl;
-        cout << "14. Eliminar valores repetidos no consecutivos " << endl;
-        cout << "15. Crear copia de lista inversa " << endl;
-        cout << "19. Mostrar Lista" << endl;
-        cout << "20. borrar Lista" << endl;
-        cout << "0. SALIR" << endl;
+        cout << "1. Lista Simple" << endl;
+        cout << "2. Lista Doble Lineal" << endl;
+        cout << "3. Lista Doble Circular" << endl;
 
-        cout << "\nIngrese una opcion: ";       
+        cout << "\nIngrese una opcion: ";
         cin >> opcion;
-        system("CLS");
 
-        switch (opcion) {
-        case 1:
-            // Agrega un Nodo al inicio de la lista
-            cout << "\nIngrese un dato al inicio: ";
-            cin >> nodo;
-            LS->agregarInicio(nodo);
-            break;
+        if(opcion==1){
+        
+            // Texto del menú que se verá cada vez
+            cout << "\n\n************************" << endl;
+            cout << "**  Menu de Opciones  Lista Simple**" << endl;
+            cout << "************************" << endl;
+            cout << "1. Agregar Nodo al inicio de la lista" << endl;
+            cout << "2. Agregar Nodo al final de la lista" << endl;
+            cout << "3. Agregar Nodo despues de (nuevo nodo,despues de)" << endl;
+            cout << "4. Agregar Nodo antes de (nuevo nodo,antes de)" << endl;
+            cout << "5. Agregar dato Asendientemente" << endl;
+            cout << "6. Buscar posicion de dato" << endl;
+            cout << "7. Mostrar El primer Dato" << endl;
+            cout << "8. Mostrar El ultimo Dato" << endl;
+            cout << "9. Intercambiar Primero con ultimo" << endl;
+            cout << "10. Agregar Nodo en posicion (_dato,_pos)" << endl;
+            cout << "11. Eliminar Nodo en posicion (_pos)" << endl;
+            cout << "12. Eliminar todas las apariciones de (Numero) " << endl;
+            cout << "13. Eliminar valores repetidos consecutivos " << endl;
+            cout << "14. Eliminar valores repetidos no consecutivos " << endl;
+            cout << "15. Crear copia de lista inversa " << endl;
+            cout << "19. Mostrar Lista Simple" << endl;
+            cout << "20. borrar Lista Simple" << endl;
+            cout << "0. SALIR" << endl;
 
-        case 2:
-            // Agrega un Nodo al final de la lista  
-            cout << "\nIngrese un dato al final: ";
-            cin >> nodo;
-            LS->agregarFinal(nodo);
-            break;
-        case 3:
-            // Agrega un Nodo despues de (nuevo,existente)
-            cout << "\nIngrese nuevo nodo: ";
-            cin >> nodo;
-            cout << "\nDespues de : ";
-            cin >> nodo2;
-            LS->agregarDespuesDe(nodo, nodo2);
-            break;
-        case 4:
-            // Agrega un Nodo Antes de (nuevo,existente)
-            cout << "\nIngrese nuevo nodo: ";
-            cin >> nodo;
-            cout << "\nAntes de : ";
-            cin >> nodo2;
-            LS->agregarAntesDe(nodo, nodo2);
-            break;
-        case 5:
-            // Agrega acendentemente un dato
-            cout << "\nIngrese el dato que quiere agregar: ";
-            cin >> nodo;
+            cout << "\nIngrese una opcion: ";
+            cin >> opcion;
+            system("CLS");
 
-            if (LS->agregarAscendente(nodo)) {
-                cout << "Se agrego el numero asendentemente \n";
+            switch (opcion) {
+            case 1:
+                // Agrega un Nodo al inicio de la lista
+                cout << "\nIngrese un dato al inicio: ";
+                cin >> nodo;
+                LS->agregarInicio(nodo);
+                break;
+
+            case 2:
+                // Agrega un Nodo al final de la lista  
+                cout << "\nIngrese un dato al final: ";
+                cin >> nodo;
+                LS->agregarFinal(nodo);
+                break;
+            case 3:
+                // Agrega un Nodo despues de (nuevo,existente)
+                cout << "\nIngrese nuevo nodo: ";
+                cin >> nodo;
+                cout << "\nDespues de : ";
+                cin >> nodo2;
+                LS->agregarDespuesDe(nodo, nodo2);
+                break;
+            case 4:
+                // Agrega un Nodo Antes de (nuevo,existente)
+                cout << "\nIngrese nuevo nodo: ";
+                cin >> nodo;
+                cout << "\nAntes de : ";
+                cin >> nodo2;
+                LS->agregarAntesDe(nodo, nodo2);
+                break;
+            case 5:
+                // Agrega acendentemente un dato
+                cout << "\nIngrese el dato que quiere agregar: ";
+                cin >> nodo;
+
+                if (LS->agregarAscendente(nodo)) {
+                    cout << "Se agrego el numero asendentemente \n";
+                    LS->desplegar();
+
+                }
+                else {
+                    cout << "No se agrego el numero \n";
+                }
+
+                break;
+            case 6:
+                // Regresa la posicion del dato buscado
+                cout << "\nIngrese un dato: ";
+                cin >> nodo;
+                cout << "El Dato " << nodo << " esta en la posicion : " << LS->datoPos(nodo) << endl;
+                LS->desplegar();
+                break;
+            case 7:
+                // Mustra el Primer Dato de la lista
+                cout << "El primer dato de la lista es : " << LS->primero();
+                break;
+            case 8:
+                // Mustra el Ultimo Dato de la lista
+                cout << "El ultimo dato en la lista es : " << LS->ultimo();
+                break;
+            case 9:
+                LS->desplegar();
+                cout << endl;
+                if (LS->intercambiar()) {
+                    cout << "Se intercambio el primero con el el ultimo: \n";
+                    LS->desplegar();
+                }
+                else {
+                    cout << "No se pudo intercambiar el primero y el ultimo: \n";
+                }
+
+                break;
+            case 10:
+                cout << "\nIngrese nuevo nodo: ";
+                cin >> nodo;
+                cout << "\nPosicion  : ";
+                cin >> nodo2;
+
+                LS->agregarPos(nodo, nodo2);
+                break;
+            case 11:
+                cout << "\nIngrese la posicion que desea borrar: ";
+                cin >> nodo;
+
+                if (LS->borrarPos(nodo)) {
+                    cout << "El nodo fue borrado \n";
+                    LS->desplegar();
+
+                }
+                else {
+                    cout << "No se borro el nodo \n";
+                }
+                break;
+            case 12:
+                cout << "\nIngrese el valor que desea borrar: ";
+                cin >> nodo;
+                LS->eliminarTodasLasApariciones(nodo);
+                break;
+            case 13:
+                cout << "\nEliminando valores consecutivos: ";
+                LS->eliminarValoresRepetidosConsecutivos();
+                cout << "\nNueva Lista: ";
+                LS->desplegar();
+                break;
+            case 14:
+                // Implementar
+                break;
+            case 15:
+                cout << "\nLa Lista inversa es: ";
+                LS->copiarInversa();
+                LS->desplegar();
+                break;
+            case 19:
+                // Despliega la lista               
+
+                if (LS->esVacia()) {
+                    cout << "La lista esta vacia" << endl;
+                }
+                else {
+                    cout << "La lista no esta vacia" << endl;
+                    LS->desplegar();
+                }
+
+                break;
+            case 20:
+
+                LS->borrarLista();
                 LS->desplegar();
 
-            }
-            else {
-                cout << "No se agrego el numero \n";
+                break;
+            case 0:
+                repetir = false;
+                break;
             }
 
-            break;
-        case 6:
-            // Regresa la posicion del dato buscado
-            cout << "\nIngrese un dato: ";
-            cin >> nodo;            
-            cout << "El Dato "<< nodo << " esta en la posicion : " << LS->datoPos(nodo)<< endl;
-            LS->desplegar();
-            break;
-        case 7:
-            // Mustra el Primer Dato de la lista
-            cout << "El primer dato de la lista es : " << LS->primero();
-            break;
-        case 8:
-            // Mustra el Ultimo Dato de la lista
-            cout << "El ultimo dato en la lista es : " << LS->ultimo();
-            break;
-        case 9:
-            LS->desplegar();
-            cout << endl;
-            if (LS->intercambiar()) {
-                cout << "Se intercambio el primero con el el ultimo: \n";
+        
+        
+        }else if(opcion==2){
+            // Texto del menú que se verá cada vez
+            cout << "\n\n************************" << endl;
+            cout << "**  Menu de Lista Doble Lineal**" << endl;
+            cout << "************************" << endl;
+            cout << "1. Agregar Nodo al inicio de la lista" << endl;
+            cout << "2. Agregar Nodo al final de la lista" << endl;
+            cout << "3. Agregar Nodo despues de (nuevo nodo,despues de)" << endl;
+            cout << "4. Agregar Nodo antes de (nuevo nodo,antes de)" << endl;
+            cout << "5. Agregar dato Asendientemente" << endl;
+            cout << "6. Buscar posicion de dato" << endl;
+            cout << "7. Mostrar El primer Dato" << endl;
+            cout << "8. Mostrar El ultimo Dato" << endl;
+            cout << "9. Intercambiar Primero con ultimo" << endl;
+            cout << "10. Agregar Nodo en posicion (_dato,_pos)" << endl;
+            cout << "11. Eliminar Nodo en posicion (_pos)" << endl;
+            cout << "12. Eliminar todas las apariciones de (Numero) " << endl;
+            cout << "13. Eliminar valores repetidos consecutivos " << endl;
+            cout << "14. Eliminar valores repetidos no consecutivos " << endl;
+            cout << "15. Crear copia de lista inversa " << endl;
+            cout << "19. Mostrar Lista Simple" << endl;
+            cout << "20. borrar Lista Simple" << endl;
+            cout << "0. SALIR" << endl;
+
+            cout << "\nIngrese una opcion: ";
+            cin >> opcion;
+            system("CLS");
+
+            switch (opcion) {
+            case 1:
+                // Agrega un Nodo al inicio de la lista
+                cout << "\nIngrese un dato al inicio: ";
+                cin >> nodo;
+                LDL->agregarInicio(nodo);
+                break;
+
+            case 2:
+                // Agrega un Nodo al final de la lista  
+                cout << "\nIngrese un dato al final: ";
+                cin >> nodo;
+                LS->agregarFinal(nodo);
+                break;
+            case 3:
+                // Agrega un Nodo despues de (nuevo,existente)
+                cout << "\nIngrese nuevo nodo: ";
+                cin >> nodo;
+                cout << "\nDespues de : ";
+                cin >> nodo2;
+                LS->agregarDespuesDe(nodo, nodo2);
+                break;
+            case 4:
+                // Agrega un Nodo Antes de (nuevo,existente)
+                cout << "\nIngrese nuevo nodo: ";
+                cin >> nodo;
+                cout << "\nAntes de : ";
+                cin >> nodo2;
+                LS->agregarAntesDe(nodo, nodo2);
+                break;
+            case 5:
+                // Agrega acendentemente un dato
+                cout << "\nIngrese el dato que quiere agregar: ";
+                cin >> nodo;
+
+                if (LS->agregarAscendente(nodo)) {
+                    cout << "Se agrego el numero asendentemente \n";
+                    LS->desplegar();
+
+                }
+                else {
+                    cout << "No se agrego el numero \n";
+                }
+
+                break;
+            case 6:
+                // Regresa la posicion del dato buscado
+                cout << "\nIngrese un dato: ";
+                cin >> nodo;
+                cout << "El Dato " << nodo << " esta en la posicion : " << LS->datoPos(nodo) << endl;
                 LS->desplegar();
-                
-            }
-            else {
-                cout << "No se pudo intercambiar el primero y el ultimo: \n";
-            }            
-            
-            break;
-        case 10:
-            cout << "\nIngrese nuevo nodo: ";
-            cin >> nodo;
-            cout << "\nPosicion  : ";
-            cin >> nodo2;
+                break;
+            case 7:
+                // Mustra el Primer Dato de la lista
+                cout << "El primer dato de la lista es : " << LS->primero();
+                break;
+            case 8:
+                // Mustra el Ultimo Dato de la lista
+                cout << "El ultimo dato en la lista es : " << LS->ultimo();
+                break;
+            case 9:
+                LS->desplegar();
+                cout << endl;
+                if (LS->intercambiar()) {
+                    cout << "Se intercambio el primero con el el ultimo: \n";
+                    LS->desplegar();
+                }
+                else {
+                    cout << "No se pudo intercambiar el primero y el ultimo: \n";
+                }
 
-            LS->agregarPos(nodo,nodo2);
-            break;
-        case 11:
-            cout << "\nIngrese la posicion que desea borrar: ";
-            cin >> nodo;
+                break;
+            case 10:
+                cout << "\nIngrese nuevo nodo: ";
+                cin >> nodo;
+                cout << "\nPosicion  : ";
+                cin >> nodo2;
 
-            if (LS->borrarPos(nodo)) {
-                cout << "El nodo fue borrado \n";
+                LS->agregarPos(nodo, nodo2);
+                break;
+            case 11:
+                cout << "\nIngrese la posicion que desea borrar: ";
+                cin >> nodo;
+
+                if (LS->borrarPos(nodo)) {
+                    cout << "El nodo fue borrado \n";
+                    LS->desplegar();
+
+                }
+                else {
+                    cout << "No se borro el nodo \n";
+                }
+                break;
+            case 12:
+                cout << "\nIngrese el valor que desea borrar: ";
+                cin >> nodo;
+                LS->eliminarTodasLasApariciones(nodo);
+                break;
+            case 13:
+                cout << "\nEliminando valores consecutivos: ";
+                LS->eliminarValoresRepetidosConsecutivos();
+                cout << "\nNueva Lista: ";
+                LS->desplegar();
+                break;
+            case 14:
+                // Implementar
+                break;
+            case 15:
+                cout << "\nLa Lista inversa es: ";
+                LS->copiarInversa();
+                LS->desplegar();
+                break;
+            case 19:
+                // Despliega la lista               
+
+                if (LDL->esVacia()) {
+                    cout << "La lista esta vacia" << endl;
+                }
+                else {
+                    cout << "La lista no esta vacia" << endl;
+                    LDL->desplegar();
+                }
+
+                break;
+            case 20:
+
+                LS->borrarLista();
                 LS->desplegar();
 
+                break;
+            case 0:
+                repetir = false;
+                break;
             }
-            else {
-                cout << "No se borro el nodo \n";
-            }
-            break;
-        case 12:
-            cout << "\nIngrese el valor que desea borrar: ";
-            cin >> nodo;
-            LS->eliminarTodasLasApariciones(nodo);
-            break;
-        case 13:
-            cout << "\nEliminando valores consecutivos: ";
-            LS->eliminarValoresRepetidosConsecutivos();
-            cout << "\nNueva Lista: ";
-            LS->desplegar();
-            break;
-        case 14:
-            // Implementar
-            break;
-        case 15:
-            cout << "\nLa Lista inversa es: ";
-            LS->copiarInversa();
-            break;
-        case 19:
-            // Despliega la lista               
+        }else if(opcion==3){
 
-            if (LS->esVacia()) {
-                cout << "La lista esta vacia" << endl;
-            }
-            else {
-                cout << "La lista no esta vacia" << endl;
+            // Texto del menú que se verá cada vez
+            cout << "\n\n************************" << endl;
+            cout << "**  Menu de Lista Doble Ciruclar**" << endl;
+            cout << "************************" << endl;
+            cout << "1. Agregar Nodo al inicio de la lista Doble Lineal" << endl;
+            cout << "2. Agregar Nodo al final de la lista" << endl;
+            cout << "3. Agregar Nodo despues de (nuevo nodo,despues de)" << endl;
+            cout << "4. Agregar Nodo antes de (nuevo nodo,antes de)" << endl;
+            cout << "5. Agregar dato Asendientemente" << endl;
+            cout << "6. Buscar posicion de dato" << endl;
+            cout << "7. Mostrar El primer Dato" << endl;
+            cout << "8. Mostrar El ultimo Dato" << endl;
+            cout << "9. Intercambiar Primero con ultimo" << endl;
+            cout << "10. Agregar Nodo en posicion (_dato,_pos)" << endl;
+            cout << "11. Eliminar Nodo en posicion (_pos)" << endl;
+            cout << "12. Eliminar todas las apariciones de (Numero) " << endl;
+            cout << "13. Eliminar valores repetidos consecutivos " << endl;
+            cout << "14. Eliminar valores repetidos no consecutivos " << endl;
+            cout << "15. Crear copia de lista inversa " << endl;
+            cout << "19. Mostrar Lista Simple" << endl;
+            cout << "20. borrar Lista Simple" << endl;
+            cout << "0. SALIR" << endl;
+
+            cout << "\nIngrese una opcion: ";
+            cin >> opcion;
+            system("CLS");
+
+            switch (opcion) {
+            case 1:
+                // Agrega un Nodo al inicio de la lista
+                cout << "\nIngrese un dato al inicio: ";
+                cin >> nodo;
+                LDL->agregarInicio(nodo);
+                break;
+
+            case 2:
+                // Agrega un Nodo al final de la lista  
+                cout << "\nIngrese un dato al final: ";
+                cin >> nodo;
+                LS->agregarFinal(nodo);
+                break;
+            case 3:
+                // Agrega un Nodo despues de (nuevo,existente)
+                cout << "\nIngrese nuevo nodo: ";
+                cin >> nodo;
+                cout << "\nDespues de : ";
+                cin >> nodo2;
+                LS->agregarDespuesDe(nodo, nodo2);
+                break;
+            case 4:
+                // Agrega un Nodo Antes de (nuevo,existente)
+                cout << "\nIngrese nuevo nodo: ";
+                cin >> nodo;
+                cout << "\nAntes de : ";
+                cin >> nodo2;
+                LS->agregarAntesDe(nodo, nodo2);
+                break;
+            case 5:
+                // Agrega acendentemente un dato
+                cout << "\nIngrese el dato que quiere agregar: ";
+                cin >> nodo;
+
+                if (LS->agregarAscendente(nodo)) {
+                    cout << "Se agrego el numero asendentemente \n";
+                    LS->desplegar();
+
+                }
+                else {
+                    cout << "No se agrego el numero \n";
+                }
+
+                break;
+            case 6:
+                // Regresa la posicion del dato buscado
+                cout << "\nIngrese un dato: ";
+                cin >> nodo;
+                cout << "El Dato " << nodo << " esta en la posicion : " << LS->datoPos(nodo) << endl;
                 LS->desplegar();
+                break;
+            case 7:
+                // Mustra el Primer Dato de la lista
+                cout << "El primer dato de la lista es : " << LS->primero();
+                break;
+            case 8:
+                // Mustra el Ultimo Dato de la lista
+                cout << "El ultimo dato en la lista es : " << LS->ultimo();
+                break;
+            case 9:
+                LS->desplegar();
+                cout << endl;
+                if (LS->intercambiar()) {
+                    cout << "Se intercambio el primero con el el ultimo: \n";
+                    LS->desplegar();
+                }
+                else {
+                    cout << "No se pudo intercambiar el primero y el ultimo: \n";
+                }
+
+                break;
+            case 10:
+                cout << "\nIngrese nuevo nodo: ";
+                cin >> nodo;
+                cout << "\nPosicion  : ";
+                cin >> nodo2;
+
+                LS->agregarPos(nodo, nodo2);
+                break;
+            case 11:
+                cout << "\nIngrese la posicion que desea borrar: ";
+                cin >> nodo;
+
+                if (LS->borrarPos(nodo)) {
+                    cout << "El nodo fue borrado \n";
+                    LS->desplegar();
+
+                }
+                else {
+                    cout << "No se borro el nodo \n";
+                }
+                break;
+            case 12:
+                cout << "\nIngrese el valor que desea borrar: ";
+                cin >> nodo;
+                LS->eliminarTodasLasApariciones(nodo);
+                break;
+            case 13:
+                cout << "\nEliminando valores consecutivos: ";
+                LS->eliminarValoresRepetidosConsecutivos();
+                cout << "\nNueva Lista: ";
+                LS->desplegar();
+                break;
+            case 14:
+                // Implementar
+                break;
+            case 15:
+                cout << "\nLa Lista inversa es: ";
+                LS->copiarInversa();
+                LS->desplegar();
+                break;
+            case 19:
+                // Despliega la lista               
+
+                if (LDL->esVacia()) {
+                    cout << "La lista esta vacia" << endl;
+                }
+                else {
+                    cout << "La lista no esta vacia" << endl;
+                    LDL->desplegar();
+                }
+
+                break;
+            case 20:
+
+                LS->borrarLista();
+                LS->desplegar();
+
+                break;
+            case 0:
+                repetir = false;
+                break;
             }
 
-            break;           
-        case 20:
-      
-            LS->borrarLista();
-            LS->desplegar();
-
-            break;
-        case 0:
-            repetir = false;
-            break;
         }
+
+
     } while (repetir);
 
     return 0;

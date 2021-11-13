@@ -94,7 +94,7 @@ int lista_doble_lineal::datoPos(int dato)
 void lista_doble_lineal::desplegar()
 {
 	NodoD* aux = getCab();
-	std::cout << "ELEMENTOS EN LA LISTA:" << std::endl;
+	std::cout << "ELEMENTOS EN LA LISTA DOBLE LINEAL:" << std::endl;
 	while (aux != NULL) {
 		cout << aux->getDato() << "->";
 		aux = aux->getSgte();

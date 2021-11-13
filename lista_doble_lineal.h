@@ -51,6 +51,5 @@ public:
 	void desplegar();
 
 	//Operaciones de ordenar
-
 	void ordenarAscendente();
 };
