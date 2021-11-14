@@ -291,9 +291,29 @@ bool lista_doble_lineal::borrarLista()
 	return eliminado;
 }
 
-bool lista_doble_lineal::agregarPos(int _dato, int _pos)
+bool lista_doble_lineal::agregarPos(int dato, int pos)
 {
-	return false;
+	bool agregado = false;
+	if (!esVacia()) {
+		NodoD* ant = getCab();
+		int contador = 1;
+		while (ant->getSgte() != NULL && !agregado) {
+			if (contador + 1 == pos) {
+				NodoD* nuevo = new NodoD(dato);
+				nuevo->setSgte(ant->getSgte());
+				nuevo->setAnterior(ant);
+				nuevo->getSgte()->setAnterior(nuevo);
+				ant->setSgte(nuevo);
+				largo++;
+				agregado = true;
+			}
+			else {
+				ant = ant->getSgte();
+				contador++;
+			}
+		}
+	}
+	return agregado;
 }
 
 bool lista_doble_lineal::borrarPos(int pos)

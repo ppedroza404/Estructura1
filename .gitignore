@@ -39,4 +39,4 @@
 *.sdf
 *.cachefile
 *.vs
-*Debug
+*.Debug

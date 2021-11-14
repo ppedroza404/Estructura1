@@ -155,14 +155,19 @@ int lista_doble_circular::datoPos(int dato)
 void lista_doble_circular::desplegar()
 {
 	NodoD* aux = getCab();
-	NodoD* sgte = aux->getAnterior();
-	std::cout << "ELEMENTOS EN LA LISTA:" << std::endl;
-	while (aux != sgte) {
+	if (aux != NULL) {
+		NodoD* sgte = aux->getAnterior();
+		std::cout << "ELEMENTOS EN LA LISTA:" << std::endl;
+		while (aux != sgte) {
+			cout << aux->getDato() << "->";
+			aux = aux->getSgte();
+		}
 		cout << aux->getDato() << "->";
-		aux = aux->getSgte();
+		cout << "Final \n\n\n";
 	}
-	cout << aux->getDato() << "->";
-	cout << "Final \n\n\n";
+	else {
+		std::cout << "NO HAY ELEMENTOS EN LA LISTA" << std::endl;
+	}
 }
 
 void lista_doble_circular::ordenarAscendente()
@@ -188,17 +193,23 @@ void lista_doble_circular::agregarInicio(int dato)
 }
 
 void lista_doble_circular::agregarFinal(int dato)
-{ // necesita cambios
+{
 	NodoD* nuevo = new NodoD(dato);
 	NodoD* aux = getCab();
-	NodoD* ant = aux->getAnterior();
 
 	if (!esVacia()) {
-		while (aux != ant) {
-			aux = aux->getSgte();
+		if (aux->getAnterior() == NULL) {
+			aux->setAnterior(nuevo);
+			aux->setSgte(nuevo);
+			nuevo->setAnterior(aux);
+			nuevo->setSgte(aux);
 		}
-		aux->setSgte(nuevo);
-		nuevo->setAnterior(aux);
+		else {
+			aux->getAnterior()->setSgte(nuevo);
+			aux->setAnterior(nuevo);
+			nuevo->setAnterior(aux->getSgte());
+			nuevo->setSgte(aux);
+		}
 		setLargo(getLargo() + 1);
 	}
 }
@@ -232,7 +243,7 @@ bool lista_doble_circular::agregarAntesDe(int _datoRef, int _dato)
 }
 
 bool lista_doble_circular::agregarDespuesDe(int _datoRef, int _dato)
-{//Puede necesitar cambios
+{
 	bool agregado = false;
 
 	if (getCab()->getDato() == _dato) {
@@ -252,11 +263,12 @@ bool lista_doble_circular::agregarDespuesDe(int _datoRef, int _dato)
 				}
 				else {
 					NodoD* siguiente = aux->getSgte();
+					nuevo->setSgte(siguiente);
 					aux->setSgte(nuevo);
 					aux->getSgte()->setAnterior(aux);
-					nuevo->setSgte(siguiente);
 					nuevo->setAnterior(aux);
-					aux->getAnterior()->setAnterior(nuevo);
+					aux->getAnterior()->setAnterior(siguiente);
+					siguiente->setAnterior(nuevo);
 
 				}
 				agregado = true;
@@ -294,16 +306,20 @@ bool lista_doble_circular::borrar(int _dato)
 }
 
 bool lista_doble_circular::borrarLista()
-{ // puede necesitar cambios
-	bool eliminado = true;
+{ 
+	bool eliminado = false;
 	if (!esVacia()) {
 		NodoD* aux = getCab();
+		NodoD* ultimo = aux->getAnterior();
 		while (aux != NULL) {
+			if (aux == ultimo) {
+				aux->setSgte(NULL);
+				aux->setAnterior(NULL);
+			}
 			setCab(aux->getSgte());
 			delete aux;
+			setLargo(getLargo() - 1);
 			aux = getCab();
-			largo--;
-			eliminado = true;
 		}
 	}
 	return eliminado;
