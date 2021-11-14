@@ -34,7 +34,7 @@ public:
 	//Son iguales que lista simple
 	bool esVacia(); // Devuelve true si la lista esta vacia
 	bool existe(int); // Devuelve true si el dato de referencia existe en la lista.
-	int datoPos(int);
+	int datoPos(int);  //Devuelve el dato en la posicion (del 1 hata 1+1....) retorna 0 si el dato no es encontrado.
 
 	void agregarInicio(int); // Agrega al inicio el dato de referencia
 	void agregarFinal(int);  // Agrega al final el dato de referencia
@@ -45,6 +45,17 @@ public:
 	bool borrar(int); // Eliminar el nodo cuyo dato sea un entero de entrada
 	bool borrarLista();
 	bool borrarPos(int); // Elimina el nodo que se ubuca en la posicion de referencia
+
+	// Inicio Tarea
+	bool agregarAscendente(int); // Agrega de forma ascendente el dato en la lista, Si el Dato ya existe retorna Falso y no lo agrega. 
+	void eliminarValoresRepetidosConsecutivos(); //Considere una lista con valores repetidos, pero todos consecutivos
+	void eliminarValoresRepetidosNoConsecutivos(); // Depura la lista para eliminar las repeticiones.
+	void copiarInversa();// de la clase de dos listas
+
+		// Lab #6
+	bool agregarPos(int _dato, int _pos);// Agrega a _dato en la posición cardinal _pos
+	bool intercambiar(); //El valor del primero con el valor del último. Si es un solo nodo o está vacia devuelve false.
+	void eliminarTodasLasApariciones(int _dato); //Elimina de la lista todas las apariciones de _dato en la lista
 
 	//Operaciones de desplegue
 	//Es iguales que lista simple

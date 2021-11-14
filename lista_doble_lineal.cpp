@@ -102,6 +102,9 @@ void lista_doble_lineal::desplegar()
 	cout << "Final \n\n\n";
 
 }
+void lista_doble_lineal::ordenarAscendente()
+{
+}
 void lista_doble_lineal::agregarInicio(int dato)
 {
 	NodoD* nuevo = new NodoD(dato); //Paso 1. Crear el nodo
@@ -288,6 +291,11 @@ bool lista_doble_lineal::borrarLista()
 	return eliminado;
 }
 
+bool lista_doble_lineal::agregarPos(int _dato, int _pos)
+{
+	return false;
+}
+
 bool lista_doble_lineal::borrarPos(int pos)
 {
 	bool eliminado = false;
@@ -317,4 +325,30 @@ bool lista_doble_lineal::borrarPos(int pos)
 		}
 	}
 	return eliminado;
+}
+
+bool lista_doble_lineal::intercambiar()
+{
+	return false;
+}
+
+void lista_doble_lineal::eliminarTodasLasApariciones(int _dato)
+{
+}
+
+bool lista_doble_lineal::agregarAscendente(int)
+{
+	return false;
+}
+
+void lista_doble_lineal::eliminarValoresRepetidosConsecutivos()
+{
+}
+
+void lista_doble_lineal::eliminarValoresRepetidosNoConsecutivos()
+{
+}
+
+void lista_doble_lineal::copiarInversa()
+{
 }

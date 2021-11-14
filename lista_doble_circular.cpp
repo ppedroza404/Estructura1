@@ -45,14 +45,14 @@ NodoD* lista_doble_circular::dirDato(int dato)
 
 NodoD* lista_doble_circular::dirUltimo()
 {// necesita cambios
-	NodoD* dir = NULL;
 	NodoD* aux = getCab();
+	NodoD* ant = aux->getAnterior();
 
-	while (aux->getSgte() != NULL) {
+	while (aux != ant) {
 		aux = aux->getSgte();
 	}
-	dir = aux;
-	return dir;
+	ant = aux;
+	return ant;
 }
 
 NodoD* lista_doble_circular::dirAnteriorDato(int dato)
@@ -97,11 +97,12 @@ int lista_doble_circular::primero()
 }
 
 int lista_doble_circular::ultimo()
-{ // necesita cambios
+{ 
 	int dato = 0;
 	if (!esVacia()) {
 		NodoD* aux = getCab();
-		while (aux->getSgte() != NULL) {
+		NodoD* ant = aux->getAnterior();
+		while (aux != ant) {
 			aux = aux->getSgte();
 		}
 		dato = aux->getDato();
@@ -152,7 +153,7 @@ int lista_doble_circular::datoPos(int dato)
 }
 
 void lista_doble_circular::desplegar()
-{// necesita cambios
+{
 	NodoD* aux = getCab();
 	NodoD* sgte = aux->getAnterior();
 	std::cout << "ELEMENTOS EN LA LISTA:" << std::endl;
@@ -160,7 +161,12 @@ void lista_doble_circular::desplegar()
 		cout << aux->getDato() << "->";
 		aux = aux->getSgte();
 	}
+	cout << aux->getDato() << "->";
 	cout << "Final \n\n\n";
+}
+
+void lista_doble_circular::ordenarAscendente()
+{
 }
 
 void lista_doble_circular::agregarInicio(int dato)
@@ -170,21 +176,25 @@ void lista_doble_circular::agregarInicio(int dato)
 	//Paso 3 Reacomodar la lista con el nuevo nodo
 	if (!esVacia()) {
 		NodoD* sgte = nuevo->getSgte();
-		getCab()->setAnterior(nuevo);
-		nuevo->setAnterior(nuevo->getSgte());
-		sgte->setSgte(nuevo);
+		if (sgte->getSgte() != NULL) {
+			nuevo->setAnterior(sgte->getSgte());
+			sgte->setAnterior(nuevo);
+			sgte->getSgte()->setSgte(nuevo);
+			sgte->getSgte()->setAnterior(sgte);
+		}
 	}
 	setCab(nuevo);
 	setLargo(getLargo() + 1);
 }
 
 void lista_doble_circular::agregarFinal(int dato)
-{
+{ // necesita cambios
 	NodoD* nuevo = new NodoD(dato);
 	NodoD* aux = getCab();
+	NodoD* ant = aux->getAnterior();
 
 	if (!esVacia()) {
-		while (aux->getSgte() != NULL) {
+		while (aux != ant) {
 			aux = aux->getSgte();
 		}
 		aux->setSgte(nuevo);
@@ -231,15 +241,24 @@ bool lista_doble_circular::agregarDespuesDe(int _datoRef, int _dato)
 	}
 	else {
 		NodoD* aux = getCab();
-		while (aux->getSgte() != NULL && !agregado) {
+		while (!agregado) {
 			if (aux->getDato() == _datoRef) {
 				NodoD* nuevo = new NodoD(_dato);
-				NodoD* siguiente = aux->getSgte();
-				aux->setSgte(nuevo);
-				nuevo->setAnterior(aux);
+				if (aux->getSgte() == NULL) {
+					aux->setSgte(nuevo);
+					aux->setAnterior(nuevo);
+					nuevo->setSgte(aux);
+					nuevo->setAnterior(aux);
+				}
+				else {
+					NodoD* siguiente = aux->getSgte();
+					aux->setSgte(nuevo);
+					aux->getSgte()->setAnterior(aux);
+					nuevo->setSgte(siguiente);
+					nuevo->setAnterior(aux);
+					aux->getAnterior()->setAnterior(nuevo);
 
-				nuevo->setSgte(siguiente);
-				siguiente->setAnterior(nuevo);
+				}
 				agregado = true;
 			}
 			else {
@@ -279,7 +298,7 @@ bool lista_doble_circular::borrarLista()
 	bool eliminado = true;
 	if (!esVacia()) {
 		NodoD* aux = getCab();
-		while (aux->getSgte() != NULL) {
+		while (aux != NULL) {
 			setCab(aux->getSgte());
 			delete aux;
 			aux = getCab();
@@ -291,7 +310,7 @@ bool lista_doble_circular::borrarLista()
 }
 
 bool lista_doble_circular::borrarPos(int pos)
-{//puede necesitar cambios
+{
 	bool eliminado = false;
 	NodoD* aux = NULL;
 	NodoD* ant = getCab();
@@ -302,6 +321,7 @@ bool lista_doble_circular::borrarPos(int pos)
 			if (contador + 1 == pos) {
 				aux = ant->getSgte(); //Señalar el nodo a eliminar
 				ant->setSgte(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
+				ant->getSgte()->setAnterior(ant);
 			}
 			else if (contador == 1 && contador == pos) {
 				aux = getCab();  //señalar el nodo a eliminar
@@ -319,4 +339,65 @@ bool lista_doble_circular::borrarPos(int pos)
 		}
 	}
 	return eliminado;
+}
+
+bool lista_doble_circular::agregarPos(int dato, int pos)
+{
+	bool agregado = false;
+	if (!esVacia()) {
+		NodoD* ant = getCab();
+		int contador = 1;
+		while (!agregado) {
+			NodoD* nuevo = new NodoD(dato);
+			if (contador + 1 == pos) {
+				nuevo->setSgte(ant->getSgte());
+				nuevo->setAnterior(ant);
+				ant->setSgte(nuevo);
+				ant->setAnterior(nuevo->getSgte());
+				ant->getAnterior()->setSgte(ant);
+				ant->getAnterior()->setAnterior(nuevo);
+				largo++;
+				agregado = true;
+			}
+			else if (pos == 1) {
+				setCab(nuevo);
+				ant->setAnterior(getCab());
+				ant->setSgte(getCab());
+				nuevo->setAnterior(ant);
+				nuevo->setSgte(ant);
+			}
+			else {
+				ant = ant->getSgte();
+				contador++;
+			}
+		}
+	}
+	return agregado;
+}
+
+
+bool lista_doble_circular::agregarAscendente(int)
+{
+	return false;
+}
+
+void lista_doble_circular::eliminarValoresRepetidosConsecutivos()
+{
+}
+
+void lista_doble_circular::eliminarValoresRepetidosNoConsecutivos()
+{
+}
+
+void lista_doble_circular::copiarInversa()
+{
+}
+
+bool lista_doble_circular::intercambiar()
+{
+	return false;
+}
+
+void lista_doble_circular::eliminarTodasLasApariciones(int _dato)
+{
 }
