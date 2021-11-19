@@ -94,16 +94,13 @@ int lista_doble_lineal::datoPos(int dato)
 void lista_doble_lineal::desplegar()
 {
 	NodoD* aux = getCab();
-	std::cout << "ELEMENTOS EN LA LISTA DOBLE LINEAL:" << std::endl;
+	std::cout << "ELEMENTOS EN LA LISTA:" << std::endl;
 	while (aux != NULL) {
 		cout << aux->getDato() << "->";
 		aux = aux->getSgte();
 	}
 	cout << "Final \n\n\n";
 
-}
-void lista_doble_lineal::ordenarAscendente()
-{
 }
 void lista_doble_lineal::agregarInicio(int dato)
 {
@@ -291,31 +288,6 @@ bool lista_doble_lineal::borrarLista()
 	return eliminado;
 }
 
-bool lista_doble_lineal::agregarPos(int dato, int pos)
-{
-	bool agregado = false;
-	if (!esVacia()) {
-		NodoD* ant = getCab();
-		int contador = 1;
-		while (ant->getSgte() != NULL && !agregado) {
-			if (contador + 1 == pos) {
-				NodoD* nuevo = new NodoD(dato);
-				nuevo->setSgte(ant->getSgte());
-				nuevo->setAnterior(ant);
-				nuevo->getSgte()->setAnterior(nuevo);
-				ant->setSgte(nuevo);
-				largo++;
-				agregado = true;
-			}
-			else {
-				ant = ant->getSgte();
-				contador++;
-			}
-		}
-	}
-	return agregado;
-}
-
 bool lista_doble_lineal::borrarPos(int pos)
 {
 	bool eliminado = false;
@@ -345,30 +317,4 @@ bool lista_doble_lineal::borrarPos(int pos)
 		}
 	}
 	return eliminado;
-}
-
-bool lista_doble_lineal::intercambiar()
-{
-	return false;
-}
-
-void lista_doble_lineal::eliminarTodasLasApariciones(int _dato)
-{
-}
-
-bool lista_doble_lineal::agregarAscendente(int)
-{
-	return false;
-}
-
-void lista_doble_lineal::eliminarValoresRepetidosConsecutivos()
-{
-}
-
-void lista_doble_lineal::eliminarValoresRepetidosNoConsecutivos()
-{
-}
-
-void lista_doble_lineal::copiarInversa()
-{
 }

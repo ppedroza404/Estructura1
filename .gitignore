@@ -38,5 +38,3 @@
 *.opensdf
 *.sdf
 *.cachefile
-*.vs
-*.Debug
