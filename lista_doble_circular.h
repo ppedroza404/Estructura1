@@ -36,8 +36,8 @@ public:
 	bool existe(int); // Devuelve true si el dato de referencia existe en la lista.
 	int datoPos(int);
 
-	void agregarInicio(int); // Agrega al inicio el dato de referencia
-	void agregarFinal(int);  // Agrega al final el dato de referencia
+	void agregarInicio(int); // *Agrega al inicio el dato de referencia
+	void agregarFinal(int);  // *Agrega al final el dato de referencia
 	bool agregarAntesDe(int, int);  // Agrega al dato antes del nodo con la pocision de referencia
 	bool agregarDespuesDe(int, int);  // Agrega al dato despues del nodo con la pocision de referencia
 
@@ -52,8 +52,8 @@ public:
 	void eliminarValoresRepetidosNoConsecutivos(); // Depura la lista para eliminar las repeticiones.
 	void copiarInversa();// de la clase de dos listas
 
-	bool agregarPos(int _dato, int _pos);// Agrega a _dato en la posición cardinal _pos
-	bool intercambiar(); //El valor del primero con el valor del último. Si es un solo nodo o está vacia devuelve false.
+	bool agregarPos(int _dato, int _pos);// Agrega a _dato en la posiciÃ³n cardinal _pos
+	bool intercambiar(); //El valor del primero con el valor del Ãºltimo. Si es un solo nodo o estÃ¡ vacia devuelve false.
 	void eliminarTodasLasApariciones(int _dato); //Elimina de la lista todas las apariciones de _dato en la lista
 
 	//Operaciones de desplegue
@@ -62,6 +62,12 @@ public:
 
 	//Operaciones de ordenar
 
-	void ordenarAscendente();
+	void ordenarAscendente(); // Implementar!
+
+	//Tarea
+	void insetDiferencia();
+	void desplegarInversa();
+	float promedio();
+	void borrarPosicionPar();
 };
 
