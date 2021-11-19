@@ -1,2 +1,3 @@
 C:\Users\unani\OneDrive\Desktop\ListaSimple\Debug\ListaSimple.exe
 C:\code\Cuatri3\EstructurasDeDatos1\ListaSimple\Debug\ListaSimple.exe
+C:\Users\unani\source\repos\Estructura1\Debug\ListaSimple.exe

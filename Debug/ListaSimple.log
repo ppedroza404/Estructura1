@@ -1,2 +1,5 @@
-﻿  lista_simple.cpp
-  ListaSimple.vcxproj -> C:\code\Cuatri3\EstructurasDeDatos1\ListaSimple\Debug\ListaSimple.exe
+﻿  lista_doble_circular.cpp
+  NodoS.cpp
+  Generating Code...
+  LINK : C:\Users\unani\source\repos\Estructura1\Debug\ListaSimple.exe not found or not built by the last incremental link; performing full link
+  ListaSimple.vcxproj -> C:\Users\unani\source\repos\Estructura1\Debug\ListaSimple.exe

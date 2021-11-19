@@ -1,4 +1,4 @@
-#include "lista_simple.h"
+ï»¿#include "lista_simple.h"
 
 #include <iostream>
 
@@ -208,18 +208,18 @@ bool lista_simple::agregarDespuesDe(int x, int ref)
 bool lista_simple::borrar(int _dato)
 {
 	bool eliminado = false;
-	NodoS* aux = NULL; //señalar el nodo que va a ser eliminado
+	NodoS* aux = NULL; //seï¿½alar el nodo que va a ser eliminado
 
 	if (!esVacia()) {
 
 		if (getCab()->getDato() == _dato) {
-			aux = getCab();  //señalar el nodo a eliminar
+			aux = getCab();  //seï¿½alar el nodo a eliminar
 			setCab(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
 		}
-		else { //Sirve para eliminar en medio y el último
+		else { //Sirve para eliminar en medio y el ï¿½ltimo
 			NodoS* ant = dirAnteriorDato(_dato);
 			if (ant != NULL) {
-				aux = ant->getSgte(); //Señalar el nodo a eliminar
+				aux = ant->getSgte(); //Seï¿½alar el nodo a eliminar
 				ant->setSgte(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
 			}
 
@@ -302,10 +302,11 @@ bool lista_simple::borrarPos(int pos)
 	if (!esVacia()) {
 		while (aux == NULL && !eliminado) {
 			if (contador + 1 == pos) {
-				aux = ant->getSgte(); //Señalar el nodo a eliminar
+				aux = ant->getSgte(); //Seï¿½alar el nodo a eliminar
 				ant->setSgte(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
-			}else if (contador == 1 && contador == pos) {
-				aux = getCab();  //señalar el nodo a eliminar
+			}
+			else if (contador == 1 && contador == pos) {
+				aux = getCab();  //seï¿½alar el nodo a eliminar
 				setCab(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
 			}
 			else {
@@ -322,14 +323,14 @@ bool lista_simple::borrarPos(int pos)
 	return eliminado;
 }
 
-bool lista_simple::intercambiar() 
+bool lista_simple::intercambiar()
 {
 	bool sucess = false;
 	NodoS* aux = new NodoS();
 	NodoS* prim = getCab();
 	NodoS* ult = dirUltimo();
 	if (prim != NULL && prim != ult && largo > 1) {
-		aux ->setDato(prim->getDato());
+		aux->setDato(prim->getDato());
 		prim->setDato(ult->getDato());
 		ult->setDato(aux->getDato());
 		sucess = true;
@@ -385,7 +386,7 @@ void lista_simple::eliminarTodasLasApariciones(int _dato) {
 			cout << "El elemento no existe";
 		}
 		else if (aux->getDato() == _dato) { //Se encuenta en el primer Nodo de la lista
-			cab=NULL;
+			cab = NULL;
 		}
 		else {
 			ant->setSgte(aux_borrar->getSgte());
@@ -403,7 +404,7 @@ void lista_simple::eliminarValoresRepetidosNoConsecutivos()
 		while (ant != NULL) {
 			if (aux) {
 				if (aux->getDato() == ant->getDato()) {
-					aux = ant->getSgte(); //Señalar el nodo a eliminar
+					aux = ant->getSgte(); //Seï¿½alar el nodo a eliminar
 					ant->setSgte(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
 					delete aux;
 				}
@@ -417,4 +418,15 @@ void lista_simple::eliminarValoresRepetidosNoConsecutivos()
 			}
 		}
 	}
+}
+
+void lista_simple::eliminarValoresRepetidosConsecutivos()
+{
+
+}
+
+void lista_simple::copiarInversa()
+{
+
+
 }

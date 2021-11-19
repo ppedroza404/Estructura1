@@ -1,4 +1,4 @@
-#include "lista_doble_lineal.h"
+ï»¿#include "lista_doble_lineal.h"
 #include "NodoD.h"
 
 lista_doble_lineal::lista_doble_lineal()
@@ -94,13 +94,17 @@ int lista_doble_lineal::datoPos(int dato)
 void lista_doble_lineal::desplegar()
 {
 	NodoD* aux = getCab();
-	std::cout << "ELEMENTOS EN LA LISTA:" << std::endl;
+	std::cout << "ELEMENTOS EN LA LISTA DOBLE LINEAL:" << std::endl;
 	while (aux != NULL) {
 		cout << aux->getDato() << "->";
 		aux = aux->getSgte();
 	}
 	cout << "Final \n\n\n";
 
+}
+
+void lista_doble_lineal::ordenarAscendente()
+{
 }
 void lista_doble_lineal::agregarInicio(int dato)
 {
@@ -250,7 +254,7 @@ bool lista_doble_lineal::agregarDespuesDe(int _datoRef, int _dato)
 bool lista_doble_lineal::borrar(int _dato)
 {
 	bool eliminado = false;
-	NodoD* aux = dirDato(_dato); //Paso 1. Señalo el nodo a eliminar
+	NodoD* aux = dirDato(_dato); //Paso 1. Seï¿½alo el nodo a eliminar
 	if (aux != NULL) {
 		//Paso 2. Reacomodar la lista sin el nodo
 		if (aux == getCab()) { // en caso de ser la cabeza la que se va a borrar
@@ -288,6 +292,31 @@ bool lista_doble_lineal::borrarLista()
 	return eliminado;
 }
 
+bool lista_doble_lineal::agregarPos(int dato, int pos)
+{
+	bool agregado = false;
+	if (!esVacia()) {
+		NodoD* ant = getCab();
+		int contador = 1;
+		while (ant->getSgte() != NULL && !agregado) {
+			if (contador + 1 == pos) {
+				NodoD* nuevo = new NodoD(dato);
+				nuevo->setSgte(ant->getSgte());
+				nuevo->setAnterior(ant);
+				nuevo->getSgte()->setAnterior(nuevo);
+				ant->setSgte(nuevo);
+				largo++;
+				agregado = true;
+			}
+			else {
+				ant = ant->getSgte();
+				contador++;
+			}
+		}
+	}
+	return agregado;
+}
+
 bool lista_doble_lineal::borrarPos(int pos)
 {
 	bool eliminado = false;
@@ -298,11 +327,11 @@ bool lista_doble_lineal::borrarPos(int pos)
 	if (!esVacia()) {
 		while (aux == NULL && !eliminado) {
 			if (contador + 1 == pos) {
-				aux = ant->getSgte(); //Señalar el nodo a eliminar
+				aux = ant->getSgte(); //Seï¿½alar el nodo a eliminar
 				ant->setSgte(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
 			}
 			else if (contador == 1 && contador == pos) {
-				aux = getCab();  //señalar el nodo a eliminar
+				aux = getCab();  //seï¿½alar el nodo a eliminar
 				setCab(aux->getSgte()); //Reacomodar la lista con el nuevo nodo
 			}
 			else {
@@ -317,4 +346,34 @@ bool lista_doble_lineal::borrarPos(int pos)
 		}
 	}
 	return eliminado;
+}
+
+bool lista_doble_lineal::intercambiar()
+{
+	return false;
+}
+
+void lista_doble_lineal::eliminarTodasLasApariciones(int _dato)
+{
+}
+
+bool lista_doble_lineal::agregarAscendente(int)
+{
+	return false;
+}
+
+void lista_doble_lineal::eliminarValoresRepetidosConsecutivos()
+{
+}
+
+void lista_doble_lineal::eliminarValoresRepetidosNoConsecutivos()
+{
+}
+
+void lista_doble_lineal::copiarInversa()
+{
+}
+
+void lista_doble_lineal::insetDiferencia()
+{
 }

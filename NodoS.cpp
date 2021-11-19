@@ -19,7 +19,7 @@ int NodoS::getDato()
 	return this->dato;
 }
 
-NodoS* NodoS:: getSgte()
+NodoS* NodoS::getSgte()
 {
 	return this->sgte;
 }
